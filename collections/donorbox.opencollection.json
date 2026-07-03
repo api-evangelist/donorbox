@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Donorbox API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{organizationEmail}}",
+      "password": "{{apiKey}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List campaigns.", "type": "http" },
+          "http": { "method": "GET", "url": "https://donorbox.org/api/v1/campaigns" },
+          "docs": "Returns all fundraising campaigns for the authenticated organization."
+        },
+        {
+          "info": { "name": "Filter campaigns by id.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/campaigns",
+            "params": [
+              { "name": "id", "value": "", "type": "query", "description": "Donorbox campaign id." }
+            ]
+          },
+          "docs": "Filter campaigns by Donorbox campaign id."
+        },
+        {
+          "info": { "name": "Filter campaigns by name.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/campaigns",
+            "params": [
+              { "name": "name", "value": "", "type": "query", "description": "Campaign name." }
+            ]
+          },
+          "docs": "Filter campaigns by campaign name."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Donations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List donations.", "type": "http" },
+          "http": { "method": "GET", "url": "https://donorbox.org/api/v1/donations" },
+          "docs": "Returns all donations, including donor detail, campaign, amount, status, and custom question/answer fields."
+        },
+        {
+          "info": { "name": "Filter donations by email.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/donations",
+            "params": [
+              { "name": "email", "value": "", "type": "query", "description": "Donor email address." }
+            ]
+          },
+          "docs": "Filter donations by donor email address."
+        },
+        {
+          "info": { "name": "Filter donations by date range.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/donations",
+            "params": [
+              { "name": "date_from", "value": "", "type": "query", "description": "Start date (YYYY-mm-dd)." },
+              { "name": "date_to", "value": "", "type": "query", "description": "End date (YYYY-mm-dd)." }
+            ]
+          },
+          "docs": "Filter donations by donation date range."
+        },
+        {
+          "info": { "name": "Filter donations by campaign.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/donations",
+            "params": [
+              { "name": "campaign_id", "value": "", "type": "query", "description": "Donorbox campaign id." }
+            ]
+          },
+          "docs": "Filter donations by Donorbox campaign id."
+        },
+        {
+          "info": { "name": "Filter donations by amount range.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/donations",
+            "params": [
+              { "name": "amount[usd][min]", "value": "", "type": "query", "description": "Minimum USD amount." },
+              { "name": "amount[usd][max]", "value": "", "type": "query", "description": "Maximum USD amount." }
+            ]
+          },
+          "docs": "Filter donations by minimum/maximum USD amount."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List recurring donation plans.", "type": "http" },
+          "http": { "method": "GET", "url": "https://donorbox.org/api/v1/plans" },
+          "docs": "Returns all recurring donation plans (subscriptions)."
+        },
+        {
+          "info": { "name": "Filter plans by donor email.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/plans",
+            "params": [
+              { "name": "email", "value": "", "type": "query", "description": "Donor email address." }
+            ]
+          },
+          "docs": "Filter plans by donor email address."
+        },
+        {
+          "info": { "name": "Filter plans by campaign.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/plans",
+            "params": [
+              { "name": "campaign_id", "value": "", "type": "query", "description": "Donorbox campaign id." }
+            ]
+          },
+          "docs": "Filter plans by Donorbox campaign id."
+        },
+        {
+          "info": { "name": "Filter plans by started date range.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/plans",
+            "params": [
+              { "name": "date_from", "value": "", "type": "query", "description": "Start date (YYYY-mm-dd)." },
+              { "name": "date_to", "value": "", "type": "query", "description": "End date (YYYY-mm-dd)." }
+            ]
+          },
+          "docs": "Filter plans by start date range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Donors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List donors.", "type": "http" },
+          "http": { "method": "GET", "url": "https://donorbox.org/api/v1/donors" },
+          "docs": "Returns all donor profiles."
+        },
+        {
+          "info": { "name": "Filter donors by email.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/donors",
+            "params": [
+              { "name": "email", "value": "", "type": "query", "description": "Donor email address." }
+            ]
+          },
+          "docs": "Filter donors by email address."
+        },
+        {
+          "info": { "name": "Filter donors by id.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/donors",
+            "params": [
+              { "name": "id", "value": "", "type": "query", "description": "Donorbox donor id." }
+            ]
+          },
+          "docs": "Filter donors by Donorbox donor id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List events.", "type": "http" },
+          "http": { "method": "GET", "url": "https://donorbox.org/api/v1/events" },
+          "docs": "Returns all ticketed fundraising events."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tickets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List tickets.", "type": "http" },
+          "http": { "method": "GET", "url": "https://donorbox.org/api/v1/tickets" },
+          "docs": "Returns all individual event tickets."
+        },
+        {
+          "info": { "name": "List refunded tickets.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/tickets",
+            "params": [
+              { "name": "payment_status", "value": "refunded", "type": "query", "description": "Filter to refunded tickets." }
+            ]
+          },
+          "docs": "Filter tickets to only refunded ones."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Purchases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List event ticket purchases.", "type": "http" },
+          "http": { "method": "GET", "url": "https://donorbox.org/api/v1/purchases" },
+          "docs": "Returns all event ticket purchase transactions."
+        },
+        {
+          "info": { "name": "Filter purchases by payment status.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/purchases",
+            "params": [
+              { "name": "payment_status", "value": "refunded", "type": "query", "description": "succeeded | pending | failed | refunded" }
+            ]
+          },
+          "docs": "Filter purchases by payment status: succeeded, pending, failed, or refunded."
+        }
+      ]
+    }
+  ]
+}

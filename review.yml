@@ -1,0 +1,106 @@
+aid: donorbox
+name: Donorbox
+review:
+  question: Does Donorbox expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Donorbox's own public API surface is
+    a plain request/response REST API (GET-only) over HTTPS - there is no
+    server-push transport (WebSocket or SSE) on Donorbox's own API to model.
+    Donorbox's near-real-time behavior is delivered through custom webhooks
+    (server-to-endpoint HTTP POST), which is an outbound push mechanism but
+    not a WebSocket, and is out of scope for an AsyncAPI document describing
+    a bidirectional streaming protocol.
+findings:
+  summary: |
+    Donorbox does not publish a documented public WebSocket API. Donorbox is
+    an online donation and fundraising platform for nonprofits. Its REST API
+    (base https://donorbox.org/api/v1, a paid add-on bundled into the Pro and
+    Premium plans) is authenticated with HTTP Basic Auth (organization login
+    email as username, API key as password) and exposes exactly seven
+    read-only (GET) resources: Campaigns, Donations, Plans (recurring
+    donation subscriptions), Donors, Events, Tickets, and Event Ticket
+    Purchases. There are no documented POST/PUT/PATCH/DELETE operations -
+    donations, donors, and plans are created only through the hosted
+    Donorbox checkout/donation-form flow. As an alternative to polling these
+    endpoints, Donorbox offers a custom webhooks feature (same API & Zapier
+    add-on) that POSTs a JSON payload to a configured HTTPS endpoint URL when
+    an event (e.g. a new donation) occurs in the account. No realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is
+    documented anywhere in Donorbox's official API README, wiki, or support
+    articles.
+  openSource: |
+    Donorbox itself is a closed, hosted SaaS platform - there is no
+    self-hostable or open-source Donorbox server. The company does maintain
+    a public GitHub repository, donorbox/donorbox-api, but it contains only
+    documentation (README and wiki) for the hosted REST API and Zapier
+    integration, not server or client source code, and no OpenAPI/Swagger
+    or Postman file of their own.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://donorbox.org/api/v1
+      documented: true
+      note: Seven GET-only resources - Campaigns, Donations, Plans, Donors, Events, Tickets, Purchases. HTTP Basic Auth (org email + API key). Paid add-on on Pro/Premium plans.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Custom webhooks POST a JSON payload to a configured HTTPS endpoint URL when an account event occurs (e.g. new donation). Server-to-endpoint HTTP push, not WebSocket. Same API & Zapier add-on; delivery can lag up to ~1 hour during peak recurring-billing runs per Donorbox's own documentation.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Donorbox's API README, wiki, or Zendesk help articles as of the review date.
+  endpointsConfirmed:
+    - GET https://donorbox.org/api/v1/campaigns
+    - GET https://donorbox.org/api/v1/donations
+    - GET https://donorbox.org/api/v1/plans
+    - GET https://donorbox.org/api/v1/donors
+    - GET https://donorbox.org/api/v1/events
+    - GET https://donorbox.org/api/v1/tickets
+    - GET https://donorbox.org/api/v1/purchases
+  endpointsModeled:
+    - []
+  endpointsModeledNote: |
+    No endpoints beyond the seven documented GET resources above were
+    modeled - Donorbox's API surface is small and fully enumerated in its
+    official README. Response schemas in openapi/donorbox-openapi.yml were
+    transcribed directly from the documented example JSON payloads for each
+    resource; field-level types (e.g. numeric vs. string amounts) reflect
+    exactly what the official sample payloads show, including Donorbox's
+    inconsistency of returning some monetary amounts as strings and others
+    (Events, Tickets, Purchases) as numbers.
+sources:
+  - url: https://raw.githubusercontent.com/donorbox/donorbox-api/master/README.md
+    type: Documentation
+    note: Authoritative source - full endpoint list, auth, filters, pagination, ordering, and sample JSON payloads for all seven resources. Confirms REST-only, no WebSocket.
+  - url: https://github.com/donorbox/donorbox-api/wiki
+    type: Documentation
+    note: Wiki mirrors/expands the README with Get-your-API-Key, Endpoints, Filters, and Pagination pages.
+  - url: https://donorbox.zendesk.com/hc/en-us/articles/360061902812-How-to-set-up-your-Donorbox-API-for-the-API-Zapier-Integration
+    type: Documentation
+    note: Describes enabling the API & Zapier add-on and generating an API key from Account settings.
+  - url: https://donorbox.zendesk.com/hc/en-us/articles/4733681068820-Custom-Webhooks
+    type: Documentation
+    note: Custom webhooks configuration - HTTPS POST of a JSON payload to a configured endpoint, no WebSocket.
+  - url: https://donorbox.org/pricing
+    type: Documentation
+    note: Current plan tiers (Standard/Pro/Premium), platform fee percentages, and confirms API & Zapier access is gated to Pro/Premium.
+  - url: https://donorbox.zendesk.com/hc/en-us/articles/360020292992-How-much-does-Donorbox-cost-What-are-its-fees
+    type: Documentation
+    note: Fee breakdown by product line (donation forms vs. ticketing/memberships/peer-to-peer) per plan tier.
+  - url: https://www.linkedin.com/company/donorbox
+    type: LinkedIn
+    note: Company profile - founded 2014, 100,000+ organizations, $3B+ raised.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and Donorbox's own public API is
+    request/response REST (GET-only). No AsyncAPI document was created
+    because there is no server-push transport on Donorbox's own API to
+    model; the closest thing to push delivery is the custom webhooks
+    feature, which is plain HTTPS POST rather than a bidirectional streaming
+    protocol.

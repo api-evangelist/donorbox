@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Donorbox
+providerId: donorbox
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Nonprofit
+- Fundraising
+- Donations
+- Rate Limiting
+- Pagination
+description: >-
+  Donorbox does not publish a numeric per-minute or per-day request-rate limit
+  in its official API README or wiki. The only documented throughput control
+  is result-set size: all list endpoints (Campaigns, Donations, Plans,
+  Donors, Events, Tickets, Purchases) paginate via `page` and `per_page`
+  query parameters, with a default page size of 50 records and a hard
+  maximum of 100 (any larger value silently falls back to the default).
+  Third-party trackers report a 60-requests-per-minute limit, but this is not
+  confirmed in Donorbox's own documentation and is recorded here only as an
+  unverified secondary claim.
+notes: >-
+  Treat the 60 requests/minute figure as unconfirmed pending direct
+  verification against Donorbox's own docs or support. No documented 429
+  response body/headers, Retry-After behavior, or burst allowance was found.
+sources:
+- https://github.com/donorbox/donorbox-api
+- https://github.com/donorbox/donorbox-api/wiki/Pagination
+- https://apitracker.io/a/donorbox
+responseCodes:
+  throttled: 429
+limits:
+- name: List Endpoint Page Size
+  scope: request
+  metric: records
+  limit: 100 max (default 50)
+  notes: 'Applies to Campaigns, Donations, Plans, Donors, Events, Tickets, and Purchases via the per_page parameter; values above 100 fall back to the default of 50.'
+- name: Request Rate
+  scope: account
+  metric: requests
+  limit: not published by Donorbox (unconfirmed third-party reports cite ~60/minute)
+  notes: No numeric per-minute/per-hour/per-day limit is documented in the official README or wiki as of the review date.
+policies:
+- name: Read-Only API
+  description: All documented endpoints are GET only; there is no write throughput to manage because donations/donors/plans cannot be created or modified via the API.
+- name: Prefer Webhooks Over Polling
+  description: Donorbox recommends configuring custom webhooks (Pro/Premium add-on) instead of polling list endpoints on a schedule, reducing the need to reason about rate limits at all.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

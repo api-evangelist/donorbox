@@ -1,0 +1,111 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Donorbox
+providerId: donorbox
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Nonprofit
+- Fundraising
+- Donations
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Donorbox spend for a nonprofit organization. There is no
+  metered cost tied to API calls themselves - the API is either bundled into
+  the Pro/Premium monthly subscription or (per older documentation) a flat
+  $17/month add-on. The dominant, variable cost driver is instead the
+  platform fee charged as a percentage of each donation, ticket sale,
+  membership payment, or peer-to-peer contribution processed through
+  Donorbox, layered on top of the separate Stripe/PayPal payment-processing
+  fee for the same transaction. Higher-tier plans trade a fixed monthly
+  subscription for a lower percentage fee, which becomes cost-effective once
+  transaction volume is high enough.
+notes: >-
+  Reconcile actual per-transaction platform-fee and processor-fee rates
+  against your live Donorbox account, since published ranges vary by product
+  (donation forms vs. ticketing/memberships/peer-to-peer) and by payment
+  processor. The $17/month legacy API add-on figure from the GitHub README
+  was not confirmed against current billing.
+sources:
+- https://donorbox.org/pricing
+- https://donorbox.zendesk.com/hc/en-us/articles/360020292992-How-much-does-Donorbox-cost-What-are-its-fees
+- https://github.com/donorbox/donorbox-api
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Donorbox
+serviceCategory: Nonprofit Fundraising and Payments
+billingModel:
+  pricingCategory: Usage-Based (transaction fee) plus optional flat subscription
+  billingFrequency: Per-transaction fee charged at time of donation/purchase; subscription (Pro/Premium) billed monthly or annually
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Tax
+focusColumns:
+  ServiceName: Donorbox
+  ServiceCategory: Nonprofit Fundraising and Payments
+  ProviderName: Donorbox
+  PublisherName: Donorbox
+  InvoiceIssuerName: Donorbox
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: donation_platform_fee
+  description: Percentage fee charged on donation forms, donation pages, QuickDonate, and org-run peer-to-peer contributions (2.95% Standard, 1.75% Pro, 1.6% Premium).
+  unit: percent_of_transaction
+  aggregation: sum
+  dimensions:
+  - account
+  - campaign
+  - plan_tier
+- name: ticketing_platform_fee
+  description: Percentage fee charged on event ticketing, memberships, and supporter-run peer-to-peer transactions (3.95% Standard, 2% Pro/Premium).
+  unit: percent_of_transaction
+  aggregation: sum
+  dimensions:
+  - account
+  - event
+  - plan_tier
+- name: payment_processor_fee
+  description: Separate Stripe/PayPal processing fee charged on the same transaction (e.g. ~2.2% + $0.30 for card payments via Stripe), independent of Donorbox's own platform fee.
+  unit: percent_plus_fixed
+  aggregation: sum
+  dimensions:
+  - account
+  - processor
+- name: plan_subscription
+  description: Monthly or annual subscription fee for the Pro ($150/month) or Premium (custom) plan tier, which also gates API and Zapier access.
+  unit: month
+  aggregation: sum
+  dimensions:
+  - account
+- name: addon_fees
+  description: Optional add-ons such as Text-to-Give ($19-$50/month) and Donorbox Live Kiosk ($15-$820/month or year depending on tier and device count).
+  unit: month
+  aggregation: sum
+  dimensions:
+  - account
+  - addon
+principles:
+- name: Visibility
+  description: Track platform-fee percentage and processor-fee percentage separately per transaction type (donation vs. ticketing vs. membership) to see true effective cost per dollar raised.
+- name: Allocation
+  description: Attribute platform and processor fees to individual campaigns/events via the Campaigns, Donations, and Events API resources so program teams see net (post-fee) revenue.
+- name: Optimization
+  description: Model the break-even point between staying on Standard (0% subscription, higher fee%) versus upgrading to Pro/Premium (fixed subscription, lower fee%) based on monthly donation volume; encourage ACH/bank transfer where supported to reduce card-processing fees.
+- name: Accountability
+  description: Assign a finance owner to reconcile monthly Donorbox payouts against the Donations API export, accounting for both the platform fee and the processor fee per transaction.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

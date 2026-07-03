@@ -1,0 +1,310 @@
+{
+  "info": {
+    "name": "Donorbox API",
+    "description": "Read-only access to a nonprofit organization's Donorbox fundraising data - Campaigns, Donations, Plans, Donors, Events, Tickets, and Purchases. Base URL: https://donorbox.org/api/v1. All requests require HTTP Basic Auth using your Donorbox organization login email and API key. The API & Zapier add-on must be enabled on your account (Pro or Premium plan).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      { "key": "username", "value": "{{organizationEmail}}", "type": "string" },
+      { "key": "password", "value": "{{apiKey}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://donorbox.org/api/v1", "type": "string" },
+    { "key": "organizationEmail", "value": "", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Campaigns",
+      "item": [
+        {
+          "name": "List campaigns",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/campaigns", "host": ["{{baseUrl}}"], "path": ["campaigns"] },
+            "description": "Returns all fundraising campaigns for the authenticated organization."
+          }
+        },
+        {
+          "name": "Filter campaigns by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/campaigns?id=",
+              "host": ["{{baseUrl}}"],
+              "path": ["campaigns"],
+              "query": [{ "key": "id", "value": "" }]
+            },
+            "description": "Filter campaigns by Donorbox campaign id."
+          }
+        },
+        {
+          "name": "Filter campaigns by name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/campaigns?name=",
+              "host": ["{{baseUrl}}"],
+              "path": ["campaigns"],
+              "query": [{ "key": "name", "value": "" }]
+            },
+            "description": "Filter campaigns by campaign name."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Donations",
+      "item": [
+        {
+          "name": "List donations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/donations", "host": ["{{baseUrl}}"], "path": ["donations"] },
+            "description": "Returns all donations, including donor detail, campaign, amount, status, and custom question/answer fields."
+          }
+        },
+        {
+          "name": "Filter donations by email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/donations?email=",
+              "host": ["{{baseUrl}}"],
+              "path": ["donations"],
+              "query": [{ "key": "email", "value": "" }]
+            },
+            "description": "Filter donations by donor email address."
+          }
+        },
+        {
+          "name": "Filter donations by date range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/donations?date_from=&date_to=",
+              "host": ["{{baseUrl}}"],
+              "path": ["donations"],
+              "query": [
+                { "key": "date_from", "value": "" },
+                { "key": "date_to", "value": "" }
+              ]
+            },
+            "description": "Filter donations by donation date range."
+          }
+        },
+        {
+          "name": "Filter donations by campaign",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/donations?campaign_id=",
+              "host": ["{{baseUrl}}"],
+              "path": ["donations"],
+              "query": [{ "key": "campaign_id", "value": "" }]
+            },
+            "description": "Filter donations by Donorbox campaign id."
+          }
+        },
+        {
+          "name": "Filter donations by amount range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/donations?amount[usd][min]=&amount[usd][max]=",
+              "host": ["{{baseUrl}}"],
+              "path": ["donations"],
+              "query": [
+                { "key": "amount[usd][min]", "value": "" },
+                { "key": "amount[usd][max]", "value": "" }
+              ]
+            },
+            "description": "Filter donations by minimum/maximum USD amount."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Plans",
+      "item": [
+        {
+          "name": "List recurring donation plans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/plans", "host": ["{{baseUrl}}"], "path": ["plans"] },
+            "description": "Returns all recurring donation plans (subscriptions)."
+          }
+        },
+        {
+          "name": "Filter plans by donor email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/plans?email=",
+              "host": ["{{baseUrl}}"],
+              "path": ["plans"],
+              "query": [{ "key": "email", "value": "" }]
+            },
+            "description": "Filter plans by donor email address."
+          }
+        },
+        {
+          "name": "Filter plans by campaign",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/plans?campaign_id=",
+              "host": ["{{baseUrl}}"],
+              "path": ["plans"],
+              "query": [{ "key": "campaign_id", "value": "" }]
+            },
+            "description": "Filter plans by Donorbox campaign id."
+          }
+        },
+        {
+          "name": "Filter plans by started date range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/plans?date_from=&date_to=",
+              "host": ["{{baseUrl}}"],
+              "path": ["plans"],
+              "query": [
+                { "key": "date_from", "value": "" },
+                { "key": "date_to", "value": "" }
+              ]
+            },
+            "description": "Filter plans by start date range."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Donors",
+      "item": [
+        {
+          "name": "List donors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/donors", "host": ["{{baseUrl}}"], "path": ["donors"] },
+            "description": "Returns all donor profiles."
+          }
+        },
+        {
+          "name": "Filter donors by email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/donors?email=",
+              "host": ["{{baseUrl}}"],
+              "path": ["donors"],
+              "query": [{ "key": "email", "value": "" }]
+            },
+            "description": "Filter donors by email address."
+          }
+        },
+        {
+          "name": "Filter donors by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/donors?id=",
+              "host": ["{{baseUrl}}"],
+              "path": ["donors"],
+              "query": [{ "key": "id", "value": "" }]
+            },
+            "description": "Filter donors by Donorbox donor id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "List events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events", "host": ["{{baseUrl}}"], "path": ["events"] },
+            "description": "Returns all ticketed fundraising events."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "List tickets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tickets", "host": ["{{baseUrl}}"], "path": ["tickets"] },
+            "description": "Returns all individual event tickets."
+          }
+        },
+        {
+          "name": "List refunded tickets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tickets?payment_status=refunded",
+              "host": ["{{baseUrl}}"],
+              "path": ["tickets"],
+              "query": [{ "key": "payment_status", "value": "refunded" }]
+            },
+            "description": "Filter tickets to only refunded ones."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Purchases",
+      "item": [
+        {
+          "name": "List event ticket purchases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/purchases", "host": ["{{baseUrl}}"], "path": ["purchases"] },
+            "description": "Returns all event ticket purchase transactions."
+          }
+        },
+        {
+          "name": "Filter purchases by payment status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/purchases?payment_status=refunded",
+              "host": ["{{baseUrl}}"],
+              "path": ["purchases"],
+              "query": [{ "key": "payment_status", "value": "refunded" }]
+            },
+            "description": "Filter purchases by payment status: succeeded, pending, failed, or refunded."
+          }
+        }
+      ]
+    }
+  ]
+}

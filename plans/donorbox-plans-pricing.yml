@@ -1,0 +1,193 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Donorbox
+providerId: donorbox
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Nonprofit
+- Fundraising
+- Donations
+- Plans
+description: >-
+  Donorbox sells the platform, not the API, so pricing is organized around
+  three subscription tiers (Standard, Pro, Premium) that set the per-transaction
+  platform fee charged on donations, event ticketing, memberships, and
+  peer-to-peer campaigns processed through Donorbox-hosted forms. There is no
+  separate priced product for API calls or bandwidth. The read-only REST API
+  and custom webhooks are gated as an add-on: currently listed as available on
+  the Pro and Premium plans, though the official donorbox/donorbox-api GitHub
+  README (an older source) still quotes a standalone "$17/month" API & Zapier
+  add-on price. Payment processor fees (Stripe, PayPal) are separate from and
+  additional to the Donorbox platform fee.
+notes: >-
+  Pricing sources disagree on how API access is packaged - the current
+  donorbox.org/pricing page bundles it into Pro/Premium, while the
+  donorbox-api GitHub README quotes a $17/month standalone add-on price. Both
+  are recorded here; verify current packaging directly with Donorbox before
+  budgeting. Platform fee ranges also vary slightly by source (2.95-3.95%
+  Standard, 1.75-2% Pro, 1.6-2% Premium) depending on the specific product
+  (donation forms vs. ticketing/memberships/peer-to-peer).
+sources:
+- https://donorbox.org/pricing
+- https://donorbox.zendesk.com/hc/en-us/articles/360020292992-How-much-does-Donorbox-cost-What-are-its-fees
+- https://github.com/donorbox/donorbox-api
+- https://donorbox.org/explore/pro
+plans:
+- id: donorbox-standard
+  name: Standard
+  type: free
+  description: >-
+    Free-to-start plan with no monthly subscription fee. Donorbox charges a
+    platform fee per transaction instead: 2.95% on donation forms, donation
+    pages, QuickDonate, and organization-run peer-to-peer campaigns, and 3.95%
+    on event ticketing, memberships, and supporter-run peer-to-peer pages.
+    Supports up to 5 team members. The API & Zapier add-on is not included on
+    Standard per current plan comparisons.
+  entries:
+  - label: Donation Platform Fee
+    name: standard_donation_fee
+    type: usage
+    metric: percent_of_transaction
+    limit: -1
+    timeFrame: transaction
+    geo: global
+    unit: 1
+    price: 2.95% per donation transaction
+    userMultiplied: false
+  - label: Ticketing / Membership / Supporter P2P Fee
+    name: standard_ticketing_fee
+    type: usage
+    metric: percent_of_transaction
+    limit: -1
+    timeFrame: transaction
+    geo: global
+    unit: 1
+    price: 3.95% per transaction
+    userMultiplied: false
+  elements:
+  - name: Donation Forms and Pages
+  - name: Recurring Donations
+  - name: Up to 5 Team Members
+- id: donorbox-pro
+  name: Pro
+  type: paid
+  description: >-
+    $150/month subscription (discounted on annual billing) that lowers the
+    platform fee to 1.75% on donation forms/pages/QuickDonate/organization
+    peer-to-peer and 2% on event ticketing/memberships/supporter peer-to-peer.
+    Adds Jay.AI, campaign performance dashboards, branded receipts, priority
+    support, up to 10 team members, and the API & Zapier integration add-on.
+  entries:
+  - label: Subscription
+    name: pro_subscription
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $150/month (discounted annual billing available)
+    userMultiplied: false
+  - label: Donation Platform Fee
+    name: pro_donation_fee
+    type: usage
+    metric: percent_of_transaction
+    limit: -1
+    timeFrame: transaction
+    geo: global
+    unit: 1
+    price: 1.75% per donation transaction
+    userMultiplied: false
+  - label: Ticketing / Membership / Supporter P2P Fee
+    name: pro_ticketing_fee
+    type: usage
+    metric: percent_of_transaction
+    limit: -1
+    timeFrame: transaction
+    geo: global
+    unit: 1
+    price: 2% per transaction
+    userMultiplied: false
+  elements:
+  - name: Jay.AI
+  - name: Campaign Performance Dashboards
+  - name: Branded Receipts
+  - name: Priority Support
+  - name: Up to 10 Team Members
+  - name: API and Zapier Integration
+- id: donorbox-premium
+  name: Premium
+  type: enterprise
+  description: >-
+    Custom-priced ("Contact Us") plan that further lowers the platform fee to
+    1.6% on donation forms/pages/QuickDonate/organization peer-to-peer and 2%
+    on event ticketing/memberships/supporter peer-to-peer. Adds a dedicated
+    Customer Success Manager, personalized onboarding, strategy coaching,
+    24/7 priority support, up to 30 team members, and the API & Zapier
+    integration add-on.
+  entries:
+  - label: Subscription
+    name: premium_subscription
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: Donation Platform Fee
+    name: premium_donation_fee
+    type: usage
+    metric: percent_of_transaction
+    limit: -1
+    timeFrame: transaction
+    geo: global
+    unit: 1
+    price: 1.6% per donation transaction
+    userMultiplied: false
+  - label: Ticketing / Membership / Supporter P2P Fee
+    name: premium_ticketing_fee
+    type: usage
+    metric: percent_of_transaction
+    limit: -1
+    timeFrame: transaction
+    geo: global
+    unit: 1
+    price: 2% per transaction
+    userMultiplied: false
+  elements:
+  - name: Dedicated Customer Success Manager
+  - name: Personalized Onboarding
+  - name: Strategy Coaching
+  - name: 24/7 Priority Support
+  - name: Up to 30 Team Members
+  - name: API and Zapier Integration
+- id: donorbox-api-addon-legacy
+  name: API and Zapier Integration Add-On (legacy pricing)
+  type: paid
+  description: >-
+    Older pricing recorded in the official donorbox/donorbox-api GitHub
+    README as a standalone add-on cost for enabling API and Zapier access,
+    independent of plan tier. Not reconciled against current plan-gated
+    packaging on donorbox.org/pricing.
+  entries:
+  - label: API and Zapier Add-On
+    name: api_addon_legacy
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $17/month (per official GitHub README; current pricing page instead gates API access by Pro/Premium plan)
+    userMultiplied: false
+  elements:
+  - name: REST API Access
+  - name: Custom Webhooks
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
