@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/donorbox-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Username is the Donorbox organization login email; password is the API key generated
+    under Account > API & Zapier Integration.
+  sources:
+  - openapi/donorbox-openapi.yml

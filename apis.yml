@@ -162,6 +162,14 @@ apis:
     supporter, amount, refund amount, status, and the bundle of tickets bought in
     that transaction. Filterable by payment status (succeeded, pending, failed, refunded).
 common:
+- type: TrustCenter
+  url: security/donorbox-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/donorbox-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/donorbox-domain-security.yml
+- type: Authentication
+  url: authentication/donorbox-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/donorbox
 - type: LinkedIn
@@ -176,6 +184,8 @@ common:
   url: rate-limits/donorbox-rate-limits.yml
 - type: FinOps
   url: finops/donorbox-finops.yml
+- type: Blog
+  url: https://donorbox.org/nonprofit-blog/feed/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
