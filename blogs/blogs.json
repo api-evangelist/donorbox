@@ -1,0 +1,13 @@
+{
+  "repo": "donorbox",
+  "feeds": [
+    {
+      "source": "https://donorbox.org/nonprofit-blog/feed/",
+      "feed_url": "https://donorbox.org/nonprofit-blog/feed/",
+      "title": "Nonprofit Blog",
+      "saved": 4
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 14
+}
