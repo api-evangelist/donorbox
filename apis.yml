@@ -162,6 +162,8 @@ apis:
     supporter, amount, refund amount, status, and the bundle of tickets bought in
     that transaction. Filterable by payment status (succeeded, pending, failed, refunded).
 common:
+- type: AgenticAccess
+  url: agentic-access/donorbox-agentic-access.yml
 - type: TrustCenter
   url: security/donorbox-trust-center.yml
 - type: VulnerabilityDisclosure
