@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: Donorbox Campaigns Donors API
+  description: The Donorbox API provides read-only access to a nonprofit organization's fundraising data - Campaigns, Donations, Plans (recurring donation subscriptions), Donors, Events, Tickets, and Event Ticket Purchases. The API is a paid add-on available on the Pro and Premium Donorbox plans. All requests use HTTP Basic Auth, with your Donorbox organization login email as the username and your API key as the password. Every list endpoint supports `page`/`per_page` pagination and `order` sorting, and most support endpoint-specific filters. There are no documented write (POST/PUT/PATCH/DELETE) operations - donations, donors, and plans are created through the hosted Donorbox checkout flow, not this API. This document was authored by API Evangelist from the official donorbox/donorbox-api GitHub README and wiki, since Donorbox does not publish its own OpenAPI/Swagger file.
+  version: '1.0'
+  contact:
+    name: Donorbox
+    url: https://donorbox.org
+  license:
+    name: Proprietary (API access is a paid add-on)
+    url: https://github.com/donorbox/donorbox-api
+servers:
+- url: https://donorbox.org/api/v1
+  description: Donorbox production API
+security:
+- basicAuth: []
+tags:
+- name: Donors
+  description: Donor/supporter profiles.
+paths:
+  /donors:
+    get:
+      operationId: listDonors
+      tags:
+      - Donors
+      summary: List donors
+      description: Returns all donor profiles for the authenticated organization. Endpoint and response shape confirmed in the official README sample payload.
+      parameters:
+      - name: id
+        in: query
+        description: Filter to a single donor by Donorbox donor id.
+        schema:
+          type: integer
+      - name: first_name
+        in: query
+        description: Filter donors by first name.
+        schema:
+          type: string
+      - name: last_name
+        in: query
+        description: Filter donors by last name.
+        schema:
+          type: string
+      - name: donor_name
+        in: query
+        description: Filter donors by full name (equivalent to combining first_name and last_name).
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Filter donors by email address.
+        schema:
+          type: string
+          format: email
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - $ref: '#/components/parameters/Order'
+      responses:
+        '200':
+          description: A list of donors.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Donor'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      description: Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default).
+      schema:
+        type: integer
+        default: 50
+        maximum: 100
+    Page:
+      name: page
+      in: query
+      description: Page number to return.
+      schema:
+        type: integer
+        default: 1
+    Order:
+      name: order
+      in: query
+      description: Sort order.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+  responses:
+    Unauthorized:
+      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  schemas:
+    Donor:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        country:
+          type: string
+        employer:
+          type: string
+          nullable: true
+        occupation:
+          type: string
+          nullable: true
+        comment:
+          type: string
+          nullable: true
+        donations_count:
+          type: integer
+        last_donation_at:
+          type: string
+          format: date-time
+        total:
+          type: array
+          items:
+            type: object
+            properties:
+              currency:
+                type: string
+              value:
+                type: number
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Username is the Donorbox organization login email; password is the API key generated under Account > API & Zapier Integration.

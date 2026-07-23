@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: Donorbox Campaigns Plans API
+  description: The Donorbox API provides read-only access to a nonprofit organization's fundraising data - Campaigns, Donations, Plans (recurring donation subscriptions), Donors, Events, Tickets, and Event Ticket Purchases. The API is a paid add-on available on the Pro and Premium Donorbox plans. All requests use HTTP Basic Auth, with your Donorbox organization login email as the username and your API key as the password. Every list endpoint supports `page`/`per_page` pagination and `order` sorting, and most support endpoint-specific filters. There are no documented write (POST/PUT/PATCH/DELETE) operations - donations, donors, and plans are created through the hosted Donorbox checkout flow, not this API. This document was authored by API Evangelist from the official donorbox/donorbox-api GitHub README and wiki, since Donorbox does not publish its own OpenAPI/Swagger file.
+  version: '1.0'
+  contact:
+    name: Donorbox
+    url: https://donorbox.org
+  license:
+    name: Proprietary (API access is a paid add-on)
+    url: https://github.com/donorbox/donorbox-api
+servers:
+- url: https://donorbox.org/api/v1
+  description: Donorbox production API
+security:
+- basicAuth: []
+tags:
+- name: Plans
+  description: Recurring donation subscriptions.
+paths:
+  /plans:
+    get:
+      operationId: listPlans
+      tags:
+      - Plans
+      summary: List recurring donation plans
+      description: Returns all recurring donation plans (subscriptions) for the authenticated organization. Endpoint and response shape confirmed in the official README sample payload.
+      parameters:
+      - name: email
+        in: query
+        description: Filter plans by the donor's email address.
+        schema:
+          type: string
+          format: email
+      - name: date_from
+        in: query
+        description: 'Filter plans started on or after this date. Accepted formats: YYYY-mm-dd, YYYY/mm/dd, YYYYmmdd, dd-mm-YYYY.'
+        schema:
+          type: string
+      - name: date_to
+        in: query
+        description: 'Filter plans started on or before this date. Accepted formats: YYYY-mm-dd, YYYY/mm/dd, YYYYmmdd, dd-mm-YYYY.'
+        schema:
+          type: string
+      - name: campaign_id
+        in: query
+        description: Filter plans by Donorbox campaign id.
+        schema:
+          type: integer
+      - name: campaign_name
+        in: query
+        description: Filter plans by campaign title.
+        schema:
+          type: string
+      - name: donor_id
+        in: query
+        description: Filter plans by Donorbox donor id.
+        schema:
+          type: integer
+      - name: first_name
+        in: query
+        description: Filter plans by donor first name.
+        schema:
+          type: string
+      - name: last_name
+        in: query
+        description: Filter plans by donor last name.
+        schema:
+          type: string
+      - name: donor_name
+        in: query
+        description: Filter plans by donor full name (equivalent to combining first_name and last_name).
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - $ref: '#/components/parameters/Order'
+      responses:
+        '200':
+          description: A list of recurring donation plans.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      description: Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default).
+      schema:
+        type: integer
+        default: 50
+        maximum: 100
+    Page:
+      name: page
+      in: query
+      description: Page number to return.
+      schema:
+        type: integer
+        default: 1
+    Order:
+      name: order
+      in: query
+      description: Sort order.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+  responses:
+    Unauthorized:
+      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  schemas:
+    Plan:
+      type: object
+      properties:
+        id:
+          type: integer
+        campaign:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        donor:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+              format: email
+            phone:
+              type: string
+            address:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            zip_code:
+              type: string
+            country:
+              type: string
+            employer:
+              type: string
+              nullable: true
+            occupation:
+              type: string
+              nullable: true
+        type:
+          type: string
+          description: Recurrence frequency, e.g. "monthly".
+        amount:
+          type: string
+        formatted_amount:
+          type: string
+        payment_method:
+          type: string
+        started_at:
+          type: string
+          format: date
+        last_donation_date:
+          type: string
+          format: date-time
+        next_donation_date:
+          type: string
+          format: date
+        status:
+          type: string
+          description: 'Documented example value: "active".'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Username is the Donorbox organization login email; password is the API key generated under Account > API & Zapier Integration.
