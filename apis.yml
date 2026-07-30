@@ -9,7 +9,20 @@ description: Donorbox is an online donation and fundraising platform for nonprof
   (recurring donation subscriptions), Donors, Events, Tickets, and Ticket Purchases,
   authenticated with HTTP Basic Auth using an organization email and API key, with
   custom webhooks available as an alternative to polling.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/donorbox.png
 tags:
 - Nonprofit
 - Fundraising
@@ -23,144 +36,214 @@ specificationVersion: '0.19'
 apis:
 - aid: donorbox:donorbox-campaigns-api
   name: Donorbox Campaigns API
-  tags:
-  - Campaigns
-  - Fundraising
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Fundraising campaigns.
   humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
   baseURL: https://donorbox.org/api/v1
+  tags:
+  - Campaigns
   properties:
-  - url: https://github.com/donorbox/donorbox-api/wiki
-    type: Documentation
-  - url: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
-    type: APIReference
-  - url: openapi/donorbox-openapi.yml
-    type: OpenAPI
-  - url: collections/donorbox.postman_collection.json
-    type: Postman
-  - url: collections/donorbox.opencollection.json
-    type: OpenCollection
-  description: Read-only access to an organization's fundraising campaigns - id,
-    name, slug, currency, goal amount, total raised, and donation count. Filterable
-    by campaign id or name.
+  - type: OpenAPI
+    url: openapi/donorbox-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/donorbox/donorbox-api/wiki
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  - type: Postman
+    url: collections/donorbox.postman_collection.json
+  - type: OpenCollection
+    url: collections/donorbox.opencollection.json
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
 - aid: donorbox:donorbox-donations-api
   name: Donorbox Donations API
+  description: One-time and recurring donation transactions.
+  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  baseURL: https://donorbox.org/api/v1
   tags:
   - Donations
-  - Payments
-  - Stripe
-  - PayPal
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
-  baseURL: https://donorbox.org/api/v1
   properties:
-  - url: https://github.com/donorbox/donorbox-api/wiki
-    type: Documentation
-  - url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
-    type: APIReference
-  - url: openapi/donorbox-openapi.yml
-    type: OpenAPI
-  - url: collections/donorbox.postman_collection.json
-    type: Postman
-  - url: collections/donorbox.opencollection.json
-    type: OpenCollection
-  description: Read-only access to an organization's donations, including campaign,
-    donor, amount, currency, status, donation type (Stripe or PayPal), UTM attribution,
-    processing fee, and custom question/answer fields collected on the donation form.
-    Filterable by email, donor, campaign, id, date range, and amount range.
-- aid: donorbox:donorbox-plans-api
-  name: Donorbox Plans API
-  tags:
-  - Recurring Donations
-  - Subscriptions
-  - Plans
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
-  baseURL: https://donorbox.org/api/v1
-  properties:
-  - url: https://github.com/donorbox/donorbox-api/wiki
-    type: Documentation
-  - url: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
-    type: APIReference
-  - url: openapi/donorbox-openapi.yml
-    type: OpenAPI
-  description: Read-only access to recurring donation plans/subscriptions - donor,
-    campaign, plan type (monthly, weekly, etc.), amount, payment method, start date,
-    last/next donation date, and status. Filterable by donor email/id/name, campaign,
-    and start date range.
+  - type: OpenAPI
+    url: openapi/donorbox-donations-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/donorbox/donorbox-api/wiki
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  - type: Postman
+    url: collections/donorbox.postman_collection.json
+  - type: OpenCollection
+    url: collections/donorbox.opencollection.json
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
 - aid: donorbox:donorbox-donors-api
   name: Donorbox Donors API
+  description: Donor/supporter profiles.
+  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  baseURL: https://donorbox.org/api/v1
   tags:
   - Donors
-  - CRM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
-  baseURL: https://donorbox.org/api/v1
   properties:
-  - url: https://github.com/donorbox/donorbox-api/wiki
-    type: Documentation
-  - url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
-    type: APIReference
-  - url: openapi/donorbox-openapi.yml
-    type: OpenAPI
-  description: Read-only access to donor profiles - contact info, address, donation
-    count, last donation date, and lifetime total by currency. Filterable by donor
-    id, name, and email.
+  - type: OpenAPI
+    url: openapi/donorbox-donors-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/donorbox/donorbox-api/wiki
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  - type: Postman
+    url: collections/donorbox.postman_collection.json
+  - type: OpenCollection
+    url: collections/donorbox.opencollection.json
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
 - aid: donorbox:donorbox-events-api
   name: Donorbox Events API
+  description: Ticketed fundraising events.
+  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  baseURL: https://donorbox.org/api/v1
   tags:
   - Events
-  - Ticketing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
-  baseURL: https://donorbox.org/api/v1
   properties:
-  - url: https://github.com/donorbox/donorbox-api/wiki
-    type: Documentation
-  - url: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
-    type: APIReference
-  - url: openapi/donorbox-openapi.yml
-    type: OpenAPI
-  description: Read-only access to ticketed fundraising events - id, name, slug,
-    currency, total raised, donation count, and ticket count.
-- aid: donorbox:donorbox-tickets-api
-  name: Donorbox Tickets API
+  - type: OpenAPI
+    url: openapi/donorbox-events-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/donorbox/donorbox-api/wiki
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  - type: Postman
+    url: collections/donorbox.postman_collection.json
+  - type: OpenCollection
+    url: collections/donorbox.opencollection.json
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
+- aid: donorbox:donorbox-plans-api
+  name: Donorbox Plans API
+  description: Recurring donation subscriptions.
+  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  baseURL: https://donorbox.org/api/v1
   tags:
-  - Tickets
-  - Events
-  - Ticketing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
-  baseURL: https://donorbox.org/api/v1
+  - Plans
   properties:
-  - url: https://github.com/donorbox/donorbox-api/wiki
-    type: Documentation
-  - url: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
-    type: APIReference
-  - url: openapi/donorbox-openapi.yml
-    type: OpenAPI
-  description: Read-only access to individual event tickets - price, ticket type
-    (name, fair market value, tax-deductible amount), the parent event, and the
-    associated purchase transaction. Filterable by payment status (e.g. refunded).
+  - type: OpenAPI
+    url: openapi/donorbox-plans-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/donorbox/donorbox-api/wiki
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  - type: Postman
+    url: collections/donorbox.postman_collection.json
+  - type: OpenCollection
+    url: collections/donorbox.opencollection.json
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
 - aid: donorbox:donorbox-purchases-api
-  name: Donorbox Event Ticket Purchases API
+  name: Donorbox Purchases API
+  description: Event ticket purchase transactions.
+  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  baseURL: https://donorbox.org/api/v1
   tags:
   - Purchases
-  - Events
-  - Ticketing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
-  baseURL: https://donorbox.org/api/v1
   properties:
-  - url: https://github.com/donorbox/donorbox-api/wiki
-    type: Documentation
-  - url: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
-    type: APIReference
-  - url: openapi/donorbox-openapi.yml
-    type: OpenAPI
-  description: Read-only access to event ticket purchase transactions - the purchasing
-    supporter, amount, refund amount, status, and the bundle of tickets bought in
-    that transaction. Filterable by payment status (succeeded, pending, failed, refunded).
+  - type: OpenAPI
+    url: openapi/donorbox-purchases-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/donorbox/donorbox-api/wiki
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  - type: Postman
+    url: collections/donorbox.postman_collection.json
+  - type: OpenCollection
+    url: collections/donorbox.opencollection.json
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
+- aid: donorbox:donorbox-tickets-api
+  name: Donorbox Tickets API
+  description: Individual event tickets.
+  humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  baseURL: https://donorbox.org/api/v1
+  tags:
+  - Tickets
+  properties:
+  - type: OpenAPI
+    url: openapi/donorbox-tickets-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/donorbox/donorbox-api/wiki
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
+  - type: Postman
+    url: collections/donorbox.postman_collection.json
+  - type: OpenCollection
+    url: collections/donorbox.opencollection.json
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donations
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#plans
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#donors
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#events
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#tickets
+  - type: APIReference
+    url: https://github.com/donorbox/donorbox-api/blob/master/README.md#event-ticket-purchases
 common:
 - type: AgenticAccess
   url: agentic-access/donorbox-agentic-access.yml
