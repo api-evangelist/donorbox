@@ -1,0 +1,26 @@
+{
+  "provider": "donorbox",
+  "sources": [
+    "donorbox-campaigns-api-openapi.yml",
+    "donorbox-donations-api-openapi.yml",
+    "donorbox-donors-api-openapi.yml",
+    "donorbox-events-api-openapi.yml",
+    "donorbox-plans-api-openapi.yml",
+    "donorbox-purchases-api-openapi.yml",
+    "donorbox-tickets-api-openapi.yml"
+  ],
+  "outputs": [
+    "donorbox-campaigns-api-openapi.yml",
+    "donorbox-donations-api-openapi.yml",
+    "donorbox-donors-api-openapi.yml",
+    "donorbox-events-api-openapi.yml",
+    "donorbox-plans-api-openapi.yml",
+    "donorbox-purchases-api-openapi.yml",
+    "donorbox-tickets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
