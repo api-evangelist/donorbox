@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Donorbox Campaigns Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List ticketed events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/events",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default)."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              }
+            ]
+          },
+          "docs": "Returns all ticketed fundraising events for the authenticated organization. Endpoint and response shape confirmed in the official README sample payload; documented filter parameters were not published beyond common pagination/ordering, so only those are modeled here."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

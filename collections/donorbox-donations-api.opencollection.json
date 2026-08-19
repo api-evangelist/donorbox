@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Donorbox Campaigns Donations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Donations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List donations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/donations",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter donations by the donor's email address."
+              },
+              {
+                "name": "date_from",
+                "value": "",
+                "type": "query",
+                "description": "Filter donations on or after this date. Accepted formats: YYYY-mm-dd, YYYY/mm/dd, YYYYmmdd, dd-mm-YYYY."
+              },
+              {
+                "name": "date_to",
+                "value": "",
+                "type": "query",
+                "description": "Filter donations on or before this date. Accepted formats: YYYY-mm-dd, YYYY/mm/dd, YYYYmmdd, dd-mm-YYYY."
+              },
+              {
+                "name": "campaign_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter donations by campaign title."
+              },
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter donations by Donorbox campaign id."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a single donation by its Donorbox donation id."
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter donations by donor first name."
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter donations by donor last name."
+              },
+              {
+                "name": "donor_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter donations by Donorbox donor id."
+              },
+              {
+                "name": "amount[usd][min]",
+                "value": "",
+                "type": "query",
+                "description": "Minimum donation amount (USD), usable alone or with amount[usd][max]."
+              },
+              {
+                "name": "amount[usd][max]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum donation amount (USD), usable alone or with amount[usd][min]."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default)."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              }
+            ]
+          },
+          "docs": "Returns all donations for the authenticated organization, including Stripe and PayPal transactions, donor detail, and any custom question/answer fields collected on the donation form. Endpoint and response shape confirmed in the official README sample payloads."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

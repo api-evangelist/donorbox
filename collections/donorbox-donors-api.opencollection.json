@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Donorbox Campaigns Donors API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Donors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List donors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/donors",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a single donor by Donorbox donor id."
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter donors by first name."
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter donors by last name."
+              },
+              {
+                "name": "donor_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter donors by full name (equivalent to combining first_name and last_name)."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter donors by email address."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default)."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              }
+            ]
+          },
+          "docs": "Returns all donor profiles for the authenticated organization. Endpoint and response shape confirmed in the official README sample payload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

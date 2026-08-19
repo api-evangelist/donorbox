@@ -1,0 +1,225 @@
+{
+  "item": [
+    {
+      "id": "2dfbf9f6-fbd8-4409-ae13-b6a6407d2ee6",
+      "name": "Tickets",
+      "description": {
+        "content": "Individual event tickets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "76b0d267-ec34-4075-9749-22b30db89585",
+          "name": "List event tickets",
+          "request": {
+            "name": "List event tickets",
+            "description": {
+              "content": "Returns all individual event tickets for the authenticated organization. Endpoint and response shape confirmed in the official README sample payload.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "payment_status",
+                  "value": "<string>",
+                  "description": "Filter tickets by payment status. Documented example is `refunded`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default)."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Sort order."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "970fd360-1b6b-4251-99b0-adbfb1ecf367",
+              "name": "A list of tickets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payment_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6677,\n    \"currency\": \"string\",\n    \"free_ticket\": false,\n    \"price\": 3496.4811705159905,\n    \"price_formatted\": \"string\",\n    \"ticket_type\": {\n      \"id\": 7870,\n      \"name\": \"string\",\n      \"fair_market_value\": 9380.680601122114,\n      \"fair_market_value_formatted\": \"string\",\n      \"tax_deductible_amount\": 6294.482680235554,\n      \"tax_deductible_amount_formatted\": \"string\",\n      \"tax_amount\": 8447.922083603826,\n      \"tax_amount_formatted\": \"string\"\n    },\n    \"event\": {\n      \"id\": 4278,\n      \"name\": \"string\"\n    },\n    \"transaction\": {\n      \"id\": 8909,\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"currency\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"donation_id\": 7416,\n      \"stripe_charge_id\": \"string\",\n      \"full_name\": \"string\",\n      \"address\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"FreKURdI9xr@ieAE.zp\",\n      \"supporter_id\": 2660,\n      \"status\": \"string\",\n      \"purchase_date\": \"1987-02-06T20:54:57.399Z\",\n      \"free_purchase\": false,\n      \"price\": 8207.651753757023,\n      \"price_formatted\": \"string\",\n      \"donation_amount\": 4096.670145203411,\n      \"donation_amount_formatted\": \"string\",\n      \"app_fee\": 4557.3016091268555,\n      \"app_fee_formatted\": \"string\",\n      \"stripe_fee\": 5885.298887913524,\n      \"stripe_fee_formatted\": \"string\",\n      \"slug\": \"string\",\n      \"preferences_answer\": {}\n    }\n  },\n  {\n    \"id\": 5908,\n    \"currency\": \"string\",\n    \"free_ticket\": true,\n    \"price\": 5183.6332699491595,\n    \"price_formatted\": \"string\",\n    \"ticket_type\": {\n      \"id\": 5039,\n      \"name\": \"string\",\n      \"fair_market_value\": 4918.780013157632,\n      \"fair_market_value_formatted\": \"string\",\n      \"tax_deductible_amount\": 8107.790418561625,\n      \"tax_deductible_amount_formatted\": \"string\",\n      \"tax_amount\": 7191.562373193654,\n      \"tax_amount_formatted\": \"string\"\n    },\n    \"event\": {\n      \"id\": 8849,\n      \"name\": \"string\"\n    },\n    \"transaction\": {\n      \"id\": 8846,\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"currency\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"donation_id\": 993,\n      \"stripe_charge_id\": \"string\",\n      \"full_name\": \"string\",\n      \"address\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"AQrXO49G@ohfmUv.njsj\",\n      \"supporter_id\": 5836,\n      \"status\": \"string\",\n      \"purchase_date\": \"1948-04-21T19:42:54.311Z\",\n      \"free_purchase\": true,\n      \"price\": 725.44307528292,\n      \"price_formatted\": \"string\",\n      \"donation_amount\": 5218.259239884672,\n      \"donation_amount_formatted\": \"string\",\n      \"app_fee\": 3536.2581502891844,\n      \"app_fee_formatted\": \"string\",\n      \"stripe_fee\": 4369.795252554089,\n      \"stripe_fee_formatted\": \"string\",\n      \"slug\": \"string\",\n      \"preferences_answer\": {}\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbc306b8-2e2d-4613-a771-dfd351657252",
+              "name": "Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payment_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://donorbox.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ed534ace-ebc4-4f2a-a360-aaf430403c50",
+    "name": "Donorbox Campaigns Tickets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Donorbox API provides read-only access to a nonprofit organization's fundraising data - Campaigns, Donations, Plans (recurring donation subscriptions), Donors, Events, Tickets, and Event Ticket Purchases. The API is a paid add-on available on the Pro and Premium Donorbox plans. All requests use HTTP Basic Auth, with your Donorbox organization login email as the username and your API key as the password. Every list endpoint supports `page`/`per_page` pagination and `order` sorting, and most support endpoint-specific filters. There are no documented write (POST/PUT/PATCH/DELETE) operations - donations, donors, and plans are created through the hosted Donorbox checkout flow, not this API. This document was authored by API Evangelist from the official donorbox/donorbox-api GitHub README and wiki, since Donorbox does not publish its own OpenAPI/Swagger file.\n\nContact Support:\n Name: Donorbox",
+      "type": "text/plain"
+    }
+  }
+}

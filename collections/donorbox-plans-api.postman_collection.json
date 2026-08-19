@@ -1,0 +1,337 @@
+{
+  "item": [
+    {
+      "id": "186d2646-7b81-49c0-855b-84b4091477bb",
+      "name": "Plans",
+      "description": {
+        "content": "Recurring donation subscriptions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a66e4408-fe06-4c39-ace6-f8141972c183",
+          "name": "List recurring donation plans",
+          "request": {
+            "name": "List recurring donation plans",
+            "description": {
+              "content": "Returns all recurring donation plans (subscriptions) for the authenticated organization. Endpoint and response shape confirmed in the official README sample payload.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Filter plans by the donor's email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "date_from",
+                  "value": "<string>",
+                  "description": "Filter plans started on or after this date. Accepted formats: YYYY-mm-dd, YYYY/mm/dd, YYYYmmdd, dd-mm-YYYY."
+                },
+                {
+                  "disabled": false,
+                  "key": "date_to",
+                  "value": "<string>",
+                  "description": "Filter plans started on or before this date. Accepted formats: YYYY-mm-dd, YYYY/mm/dd, YYYYmmdd, dd-mm-YYYY."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaign_id",
+                  "value": "<integer>",
+                  "description": "Filter plans by Donorbox campaign id."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaign_name",
+                  "value": "<string>",
+                  "description": "Filter plans by campaign title."
+                },
+                {
+                  "disabled": false,
+                  "key": "donor_id",
+                  "value": "<integer>",
+                  "description": "Filter plans by Donorbox donor id."
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name",
+                  "value": "<string>",
+                  "description": "Filter plans by donor first name."
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name",
+                  "value": "<string>",
+                  "description": "Filter plans by donor last name."
+                },
+                {
+                  "disabled": false,
+                  "key": "donor_name",
+                  "value": "<string>",
+                  "description": "Filter plans by donor full name (equivalent to combining first_name and last_name)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default)."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Sort order."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00365ffa-59db-4e1e-81f0-d6e22454fc4c",
+              "name": "A list of recurring donation plans.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaign_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "campaign_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "donor_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "first_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "donor_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4247,\n    \"campaign\": {\n      \"id\": 9720,\n      \"name\": \"string\"\n    },\n    \"donor\": {\n      \"id\": 8933,\n      \"name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"sR1@EzATrdvWBrmNZaPRMkZD.amhk\",\n      \"phone\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip_code\": \"string\",\n      \"country\": \"string\",\n      \"employer\": \"string\",\n      \"occupation\": \"string\"\n    },\n    \"type\": \"string\",\n    \"amount\": \"string\",\n    \"formatted_amount\": \"string\",\n    \"payment_method\": \"string\",\n    \"started_at\": \"1982-03-08\",\n    \"last_donation_date\": \"1984-06-30T01:16:13.481Z\",\n    \"next_donation_date\": \"1970-10-15\",\n    \"status\": \"string\"\n  },\n  {\n    \"id\": 7575,\n    \"campaign\": {\n      \"id\": 421,\n      \"name\": \"string\"\n    },\n    \"donor\": {\n      \"id\": 3438,\n      \"name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"4cfn@K.nuyx\",\n      \"phone\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip_code\": \"string\",\n      \"country\": \"string\",\n      \"employer\": \"string\",\n      \"occupation\": \"string\"\n    },\n    \"type\": \"string\",\n    \"amount\": \"string\",\n    \"formatted_amount\": \"string\",\n    \"payment_method\": \"string\",\n    \"started_at\": \"1986-05-27\",\n    \"last_donation_date\": \"1996-10-29T22:12:42.519Z\",\n    \"next_donation_date\": \"1983-12-08\",\n    \"status\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42488a46-c73b-4236-9d33-9a38af310590",
+              "name": "Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaign_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "campaign_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "donor_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "first_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "donor_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://donorbox.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "62445864-67a6-4277-a551-c76ec0753375",
+    "name": "Donorbox Campaigns Plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Donorbox API provides read-only access to a nonprofit organization's fundraising data - Campaigns, Donations, Plans (recurring donation subscriptions), Donors, Events, Tickets, and Event Ticket Purchases. The API is a paid add-on available on the Pro and Premium Donorbox plans. All requests use HTTP Basic Auth, with your Donorbox organization login email as the username and your API key as the password. Every list endpoint supports `page`/`per_page` pagination and `order` sorting, and most support endpoint-specific filters. There are no documented write (POST/PUT/PATCH/DELETE) operations - donations, donors, and plans are created through the hosted Donorbox checkout flow, not this API. This document was authored by API Evangelist from the official donorbox/donorbox-api GitHub README and wiki, since Donorbox does not publish its own OpenAPI/Swagger file.\n\nContact Support:\n Name: Donorbox",
+      "type": "text/plain"
+    }
+  }
+}

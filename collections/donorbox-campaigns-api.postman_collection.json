@@ -1,0 +1,239 @@
+{
+  "item": [
+    {
+      "id": "42a53897-c6db-406d-9cf5-2a1a5f14e299",
+      "name": "Campaigns",
+      "description": {
+        "content": "Fundraising campaigns.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ff09315-6cae-4fbd-9a91-679b29b33fba",
+          "name": "List campaigns",
+          "request": {
+            "name": "List campaigns",
+            "description": {
+              "content": "Returns all fundraising campaigns for the authenticated organization. Endpoint confirmed in the official README; response fields confirmed from the documented sample payload.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>",
+                  "description": "Filter to a single campaign by its Donorbox campaign id (documented as the `campaign_id` filter)."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter campaigns by campaign name."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default)."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Sort order."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7b36745-bbbf-43b3-9110-91433d08b108",
+              "name": "A list of campaigns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5688,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"currency\": \"string\",\n    \"created_at\": \"2023-01-01T09:30:15.961Z\",\n    \"updated_at\": \"2008-12-27T16:51:12.991Z\",\n    \"goal_amt\": \"string\",\n    \"formatted_goal_amount\": \"string\",\n    \"total_raised\": \"string\",\n    \"formatted_total_raised\": \"string\",\n    \"donations_count\": 3882\n  },\n  {\n    \"id\": 9282,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"currency\": \"string\",\n    \"created_at\": \"2001-11-09T09:08:15.708Z\",\n    \"updated_at\": \"2023-11-15T23:15:13.079Z\",\n    \"goal_amt\": \"string\",\n    \"formatted_goal_amount\": \"string\",\n    \"total_raised\": \"string\",\n    \"formatted_total_raised\": \"string\",\n    \"donations_count\": 4403\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1da7366-c08c-436f-b5e4-cd24eca427e6",
+              "name": "Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://donorbox.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b6866b66-90a9-4471-b082-826d1dbcd652",
+    "name": "Donorbox Campaigns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Donorbox API provides read-only access to a nonprofit organization's fundraising data - Campaigns, Donations, Plans (recurring donation subscriptions), Donors, Events, Tickets, and Event Ticket Purchases. The API is a paid add-on available on the Pro and Premium Donorbox plans. All requests use HTTP Basic Auth, with your Donorbox organization login email as the username and your API key as the password. Every list endpoint supports `page`/`per_page` pagination and `order` sorting, and most support endpoint-specific filters. There are no documented write (POST/PUT/PATCH/DELETE) operations - donations, donors, and plans are created through the hosted Donorbox checkout flow, not this API. This document was authored by API Evangelist from the official donorbox/donorbox-api GitHub README and wiki, since Donorbox does not publish its own OpenAPI/Swagger file.\n\nContact Support:\n Name: Donorbox",
+      "type": "text/plain"
+    }
+  }
+}

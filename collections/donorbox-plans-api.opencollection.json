@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Donorbox Campaigns Plans API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List recurring donation plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://donorbox.org/api/v1/plans",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans by the donor's email address."
+              },
+              {
+                "name": "date_from",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans started on or after this date. Accepted formats: YYYY-mm-dd, YYYY/mm/dd, YYYYmmdd, dd-mm-YYYY."
+              },
+              {
+                "name": "date_to",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans started on or before this date. Accepted formats: YYYY-mm-dd, YYYY/mm/dd, YYYYmmdd, dd-mm-YYYY."
+              },
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans by Donorbox campaign id."
+              },
+              {
+                "name": "campaign_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans by campaign title."
+              },
+              {
+                "name": "donor_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans by Donorbox donor id."
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans by donor first name."
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans by donor last name."
+              },
+              {
+                "name": "donor_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter plans by donor full name (equivalent to combining first_name and last_name)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default)."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              }
+            ]
+          },
+          "docs": "Returns all recurring donation plans (subscriptions) for the authenticated organization. Endpoint and response shape confirmed in the official README sample payload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

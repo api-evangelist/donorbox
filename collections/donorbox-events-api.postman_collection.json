@@ -1,0 +1,211 @@
+{
+  "item": [
+    {
+      "id": "67215d43-3a83-4806-abb9-cee1930af3ca",
+      "name": "Events",
+      "description": {
+        "content": "Ticketed fundraising events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "821183f5-6957-4946-89e6-377b9e7c9357",
+          "name": "List ticketed events",
+          "request": {
+            "name": "List ticketed events",
+            "description": {
+              "content": "Returns all ticketed fundraising events for the authenticated organization. Endpoint and response shape confirmed in the official README sample payload; documented filter parameters were not published beyond common pagination/ordering, so only those are modeled here.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default)."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Sort order."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42c40704-f92d-4007-b2c0-c8e93a31ab13",
+              "name": "A list of events.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7627,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"currency\": \"string\",\n    \"created_at\": \"1967-06-02T07:26:54.431Z\",\n    \"updated_at\": \"1977-04-02T13:39:01.553Z\",\n    \"total_raised\": 3966.87085702216,\n    \"formatted_total_raised\": \"string\",\n    \"donations_count\": 259,\n    \"tickets_count\": 2525\n  },\n  {\n    \"id\": 3259,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"currency\": \"string\",\n    \"created_at\": \"2009-01-02T14:35:06.663Z\",\n    \"updated_at\": \"1960-04-22T12:27:03.460Z\",\n    \"total_raised\": 3204.2712548771356,\n    \"formatted_total_raised\": \"string\",\n    \"donations_count\": 5168,\n    \"tickets_count\": 1554\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a56c784b-d747-4051-af59-4e50623d9c1d",
+              "name": "Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://donorbox.org/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ce669b76-74c1-4512-a715-9e68c701e9a7",
+    "name": "Donorbox Campaigns Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Donorbox API provides read-only access to a nonprofit organization's fundraising data - Campaigns, Donations, Plans (recurring donation subscriptions), Donors, Events, Tickets, and Event Ticket Purchases. The API is a paid add-on available on the Pro and Premium Donorbox plans. All requests use HTTP Basic Auth, with your Donorbox organization login email as the username and your API key as the password. Every list endpoint supports `page`/`per_page` pagination and `order` sorting, and most support endpoint-specific filters. There are no documented write (POST/PUT/PATCH/DELETE) operations - donations, donors, and plans are created through the hosted Donorbox checkout flow, not this API. This document was authored by API Evangelist from the official donorbox/donorbox-api GitHub README and wiki, since Donorbox does not publish its own OpenAPI/Swagger file.\n\nContact Support:\n Name: Donorbox",
+      "type": "text/plain"
+    }
+  }
+}
