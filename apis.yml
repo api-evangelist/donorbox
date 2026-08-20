@@ -24,6 +24,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/donorbox.png
 tags:
+- Non-Profit
+- Fundraising
+- Donations
+- Payments
+- Recurring Giving
+- Event Ticketing
+tags_raw:
 - Nonprofit
 - Fundraising
 - Donations
@@ -130,6 +137,8 @@ apis:
   humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
   baseURL: https://donorbox.org/api/v1
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
