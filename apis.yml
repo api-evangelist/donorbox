@@ -9,6 +9,18 @@ description: Donorbox is an online donation and fundraising platform for nonprof
   (recurring donation subscriptions), Donors, Events, Tickets, and Ticket Purchases,
   authenticated with HTTP Basic Auth using an organization email and API key, with
   custom webhooks available as an alternative to polling.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
