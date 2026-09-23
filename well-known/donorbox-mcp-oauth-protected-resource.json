@@ -1,0 +1,1 @@
+{"resource":"https://mcp.donorbox.org/mcp","authorization_servers":["https://donorbox.org"],"scopes_supported":["mcp:account:read","mcp:donations:read","mcp:donors:read","mcp:insights:read","mcp:campaigns:read","mcp:events:read","mcp:plans:read","mcp:purchases:read","mcp:tickets:read"],"bearer_methods_supported":["header"]}

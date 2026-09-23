@@ -1,13 +1,7 @@
 {
   "provider": "donorbox",
   "sources": [
-    "donorbox-campaigns-api-openapi.yml",
-    "donorbox-donations-api-openapi.yml",
-    "donorbox-donors-api-openapi.yml",
-    "donorbox-events-api-openapi.yml",
-    "donorbox-plans-api-openapi.yml",
-    "donorbox-purchases-api-openapi.yml",
-    "donorbox-tickets-api-openapi.yml"
+    "_original/donorbox-openapi.yml"
   ],
   "outputs": [
     "donorbox-campaigns-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "donorbox-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "donorbox-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "donorbox-donations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "donorbox-donors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "donorbox-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "donorbox-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "donorbox-purchases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "donorbox-tickets-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
