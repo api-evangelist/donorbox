@@ -242,6 +242,8 @@ apis:
   humanURL: https://github.com/donorbox/donorbox-api/blob/master/README.md#campaigns
   baseURL: https://donorbox.org/api/v1
   tags:
+  - Ticketing
+  tags_raw:
   - Tickets
   properties:
   - type: OpenAPI

@@ -41,6 +41,16 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
   parameters:
     Order:
       name: order
@@ -52,13 +62,6 @@ components:
         - asc
         - desc
         default: desc
-    Page:
-      name: page
-      in: query
-      description: Page number to return.
-      schema:
-        type: integer
-        default: 1
     PerPage:
       name: per_page
       in: query
@@ -67,6 +70,13 @@ components:
         type: integer
         default: 50
         maximum: 100
+    Page:
+      name: page
+      in: query
+      description: Page number to return.
+      schema:
+        type: integer
+        default: 1
   schemas:
     Event:
       type: object
@@ -93,16 +103,6 @@ components:
           type: integer
         tickets_count:
           type: integer
-  responses:
-    Unauthorized:
-      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
   securitySchemes:
     basicAuth:
       type: http

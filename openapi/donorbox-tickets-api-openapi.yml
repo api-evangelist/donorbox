@@ -48,52 +48,17 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    Order:
-      name: order
-      in: query
-      description: Sort order.
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: desc
-    Page:
-      name: page
-      in: query
-      description: Page number to return.
-      schema:
-        type: integer
-        default: 1
-    PerPage:
-      name: per_page
-      in: query
-      description: Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default).
-      schema:
-        type: integer
-        default: 50
-        maximum: 100
+  responses:
+    Unauthorized:
+      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
   schemas:
-    TicketType:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        fair_market_value:
-          type: number
-        fair_market_value_formatted:
-          type: string
-        tax_deductible_amount:
-          type: number
-        tax_deductible_amount_formatted:
-          type: string
-        tax_amount:
-          type: number
-        tax_amount_formatted:
-          type: string
     Ticket:
       type: object
       properties:
@@ -183,16 +148,51 @@ components:
             slug:
               type: string
             preferences_answer: {}
-  responses:
-    Unauthorized:
-      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
+    TicketType:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        fair_market_value:
+          type: number
+        fair_market_value_formatted:
+          type: string
+        tax_deductible_amount:
+          type: number
+        tax_deductible_amount_formatted:
+          type: string
+        tax_amount:
+          type: number
+        tax_amount_formatted:
+          type: string
+  parameters:
+    Order:
+      name: order
+      in: query
+      description: Sort order.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+    PerPage:
+      name: per_page
+      in: query
+      description: Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default).
+      schema:
+        type: integer
+        default: 50
+        maximum: 100
+    Page:
+      name: page
+      in: query
+      description: Page number to return.
+      schema:
+        type: integer
+        default: 1
   securitySchemes:
     basicAuth:
       type: http
