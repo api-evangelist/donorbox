@@ -97,34 +97,33 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
+  parameters:
+    Order:
+      name: order
+      in: query
+      description: Sort order.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+    Page:
+      name: page
+      in: query
+      description: Page number to return.
+      schema:
+        type: integer
+        default: 1
+    PerPage:
+      name: per_page
+      in: query
+      description: Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default).
+      schema:
+        type: integer
+        default: 50
+        maximum: 100
   schemas:
-    DonationQuestion:
-      type: object
-      properties:
-        question_type:
-          type: string
-          enum:
-          - radiobutton
-          - text
-          - check
-          - dropdown
-        question:
-          type: string
-        answer:
-          description: Free-text, selected option, or boolean depending on question_type.
-          oneOf:
-          - type: string
-          - type: boolean
     Donation:
       type: object
       properties:
@@ -262,32 +261,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DonationQuestion'
-  parameters:
-    Order:
-      name: order
-      in: query
-      description: Sort order.
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: desc
-    PerPage:
-      name: per_page
-      in: query
-      description: Number of records per page. Default 50, maximum 100 (values above 100 fall back to the default).
-      schema:
-        type: integer
-        default: 50
-        maximum: 100
-    Page:
-      name: page
-      in: query
-      description: Page number to return.
-      schema:
-        type: integer
-        default: 1
+    DonationQuestion:
+      type: object
+      properties:
+        question_type:
+          type: string
+          enum:
+          - radiobutton
+          - text
+          - check
+          - dropdown
+        question:
+          type: string
+        answer:
+          description: Free-text, selected option, or boolean depending on question_type.
+          oneOf:
+          - type: string
+          - type: boolean
+  responses:
+    Unauthorized:
+      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
   securitySchemes:
     basicAuth:
       type: http
