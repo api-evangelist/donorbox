@@ -60,6 +60,13 @@ components:
         type: integer
         default: 50
         maximum: 100
+    Page:
+      name: page
+      in: query
+      description: Page number to return.
+      schema:
+        type: integer
+        default: 1
     Order:
       name: order
       in: query
@@ -70,23 +77,6 @@ components:
         - asc
         - desc
         default: desc
-    Page:
-      name: page
-      in: query
-      description: Page number to return.
-      schema:
-        type: integer
-        default: 1
-  responses:
-    Unauthorized:
-      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
   schemas:
     Campaign:
       type: object
@@ -115,6 +105,16 @@ components:
           type: string
         donations_count:
           type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid Basic Auth credentials (organization email / API key). Response shape not published; modeled generically.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
   securitySchemes:
     basicAuth:
       type: http

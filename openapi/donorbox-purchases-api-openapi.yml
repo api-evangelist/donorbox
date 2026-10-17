@@ -61,6 +61,13 @@ components:
         type: integer
         default: 50
         maximum: 100
+    Page:
+      name: page
+      in: query
+      description: Page number to return.
+      schema:
+        type: integer
+        default: 1
     Order:
       name: order
       in: query
@@ -71,13 +78,6 @@ components:
         - asc
         - desc
         default: desc
-    Page:
-      name: page
-      in: query
-      description: Page number to return.
-      schema:
-        type: integer
-        default: 1
   schemas:
     TicketType:
       type: object
